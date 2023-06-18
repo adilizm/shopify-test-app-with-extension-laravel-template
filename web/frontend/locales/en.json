@@ -28,6 +28,7 @@
       "one": "Populate {{count}} product",
       "other": "Populate {{count}} products"
     },
+    "genirate_script": "Genirate script",
     "productsCreatedToast": {
       "one": "{{count}} product created!",
       "other": "{{count}} products created!"

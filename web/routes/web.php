@@ -4,6 +4,7 @@ use App\Exceptions\ShopifyProductCreatorException;
 use App\Lib\AuthRedirection;
 use App\Lib\EnsureBilling;
 use App\Lib\ProductCreator;
+use App\Lib\ScriptCreator;
 use App\Models\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
@@ -121,6 +122,29 @@ Route::get('/api/products/create', function (Request $request) {
         }
 
         Log::error("Failed to create products: $error");
+    } finally {
+        return response()->json(["success" => $success, "error" => $error], $code);
+    }
+})->middleware('shopify.auth');
+
+
+Route::get('/api/genirate_script', function (Request $request) {
+    /** @var AuthSession */
+    $session = $request->get('shopifySession'); // Provided by the shopify.auth middleware, guaranteed to be active
+
+    $success = $code = $error = null;
+    try {
+        ScriptCreator::call($session);
+        $success = true;
+        $code = 200;
+        $error = null;
+    } catch (\Exception $e) {
+            $success = false;
+            $code = 500;
+            $error = $e->getMessage();
+            
+            Log::error("Failed to create products: $error");
+        
     } finally {
         return response()->json(["success" => $success, "error" => $error], $code);
     }

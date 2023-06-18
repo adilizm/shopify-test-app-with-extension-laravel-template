@@ -7,6 +7,7 @@ import { useAppQuery, useAuthenticatedFetch } from "../hooks";
 export function ProductsCard() {
   const emptyToastProps = { content: null };
   const [isLoading, setIsLoading] = useState(true);
+  const [isLoading_on_script, setIsLoading_on_script] = useState(false);
   const [toastProps, setToastProps] = useState(emptyToastProps);
   const fetch = useAuthenticatedFetch();
   const { t } = useTranslation();
@@ -50,6 +51,20 @@ export function ProductsCard() {
     }
   };
 
+  const genirate_or_update_script = async () => {
+    setIsLoading_on_script(true);
+    const response = await fetch("/api/genirate_script");
+
+    if (response.ok) {
+      setIsLoading_on_script(false);
+
+      
+    } else {
+      setIsLoading(false);
+     
+    }
+  }
+
   return (
     <>
       {toastMarkup}
@@ -73,6 +88,18 @@ export function ProductsCard() {
             </Text>
           </Text>
         </TextContainer>
+      </Card>
+      <br/>
+      <Card
+        title='Add script to assets'
+        sectioned
+        primaryFooterAction={{
+          content: t("ProductsCard.genirate_script"),
+          onAction: genirate_or_update_script,
+          loading: isLoading_on_script,
+        }}
+      >
+    
       </Card>
     </>
   );
