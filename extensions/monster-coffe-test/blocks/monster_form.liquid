@@ -3,42 +3,61 @@
   class="monster_form"
   method="post"
   style="
-            		background-color: {{block.settings.form_bg}};
-                    border-color: {{block.settings.form_border_color}};
-                    border: solid;
-                    border-radius: {{block.settings.form_border_radius}};
-                    border-width: {{block.settings.form_border_width}};
-            	"><h1>COD MONSTER V2 with DiiLii</h1>
+                    		background-color: {{ block.settings.form_bg }};
+                            border-color: {{ block.settings.form_bc }} !important;;
+                            border: solid;
+                            border-radius: {{ block.settings.form_border_radius }};
+                            border-width: {{ block.settings.form_border_width }};
+                            padding-top: {{ block.settings.form_padding_top }};
+                            padding-bottom: {{ block.settings.form_padding_bottom }};
+                            padding-right: {{ block.settings.form_padding_right }};
+                            padding-left: {{ block.settings.form_padding_left }};
+                            text-align: center;
+    
+                    	"><h1>COD MONSTER V2 with DiiLii</h1>
   <div class="mb-3">
-    <label for="exampleFormControlInput1" class="form-label">Full name</label>
     <input
       type="email"
       class="form-control"
       id="exampleFormControlInput1"
-      placeholder="Your name">
+      placeholder="Your name"
+      style="width: 100%;
+              padding: 10px;
+              border-radius: 5px;
+              border-color: #757575;"></div>
+  <div class="mb-3">
+    <input
+      type="email"
+      class="form-control"
+      id="exampleFormControlInput1"
+      placeholder="Your phone"
+      style="width: 100%;
+              padding: 10px;
+              border-radius: 5px;
+              border-color: #757575;"></div>
+  <div id="upsell_place"></div>
+
+  <div>
+    <button style="
+          background-color: {{ block.settings.cod_btn_bg }};
+          color: {{ block.settings.cod_btn_text_color }};
+          font-size: {{ block.settings.cod_btn_text_size }};
+          border-color: {{ block.settings.cod_btn_bc }} !important;
+          margin-top: {{ block.settings.cod_btn_margin_top }} ;
+          margin-bottom: {{ block.settings.cod_btn_margin_top }} ;
+          border: solid;
+          border-radius: {{ block.settings.cod_btn_border_radius }};
+          border-width: {{ block.settings.cod_btn_border_width }};
+          padding-top: {{ block.settings.cod_btn_padding_top }};
+          padding-bottom: {{ block.settings.cod_btn_padding_top }};
+          padding-right: {{ block.settings.cod_btn_padding_right }};
+          padding-left: {{ block.settings.cod_btn_padding_right }};
+          text-align: center;
+      
+      ">{{ block.settings.cod_btn_text }}</button>
   </div>
-  <!-- {% assign avg_rating = block.settings.product.metafields.demo.avg_rating.value | round %}
-  <span style="color:{{ block.settings.colour }}">
-  {% render 'stars', rating: avg_rating %}
-  </span>
-  {% if avg_rating >= 4 %}
-  <br>
-  <img src="{{ "thumbs-up.png" | asset_img_url: '15x' }}" height="15" width="15" loading="lazy">
-  {{ 'ratings.home.recommendationText' | t }}
-  {% endif %}
 
-  {% schema %}
-  {
-  "name": "Star Rating",
-  "target": "section",
-  "settings": [
-  { "type": "product", "id": "product", "label": "product", "autofill": true },
-  { "type": "color", "id": "colour", "label": "Star Colour", "default": "#ff0000" }
-  ]
-  }
-  {% endschema %}
-
-  --></form>
+</form>
 
 {% schema %}
   {
@@ -50,20 +69,95 @@
         "id": "form_bg",
         "label": "form background color",
         "default": "#1b173a"
-      }, {
+      },
+      {
         "type": "color",
-        "id": "form_border_color",
+        "id": "form_bc",
         "label": "form border color",
-        "default": "#004BFF"
-      }, {
+        "default": "#B7B7B7"
+      },
+      {
         "type": "text",
         "id": "form_border_radius",
         "label": "form border radius",
         "default": "1px"
-      }, {
+      },
+      {
         "type": "text",
         "id": "form_border_width",
         "label": "form border width",
+        "default": "1px"
+      }, {
+        "type": "text",
+        "id": "form_padding_top",
+        "label": "form padding top",
+        "default": "1px"
+      }, {
+        "type": "text",
+        "id": "form_padding_bottom",
+        "label": "form padding bottom",
+        "default": "1px"
+      }, {
+        "type": "text",
+        "id": "form_padding_right",
+        "label": "form padding right",
+        "default": "1px"
+      }, {
+        "type": "text",
+        "id": "form_padding_left",
+        "label": "form padding left",
+        "default": "1px"
+      }, {
+        "type": "color",
+        "id": "cod_btn_bg",
+        "label": "cod_btn background color",
+        "default": "#1b173a"
+      }, {
+        "type": "text",
+        "id": "cod_btn_text_size",
+        "label": "btn text size",
+        "default": "20px"
+      }, {
+
+        "type": "text",
+        "id": "cod_btn_margin_top",
+        "label": "btn top & bottom margin",
+        "default": "5px"
+      }, {
+
+        "type": "text",
+        "id": "cod_btn_text",
+        "label": "btn text",
+        "default": "order now "
+      }, {
+        "type": "color",
+        "id": "cod_btn_text_color",
+        "label": "btn text color",
+        "default": "#1b173a"
+      }, {
+        "type": "color",
+        "id": "cod_btn_bc",
+        "label": "cod_btn border color",
+        "default": "#B7B7B7"
+      }, {
+        "type": "text",
+        "id": "cod_btn_border_radius",
+        "label": "cod_btn border radius",
+        "default": "1px"
+      }, {
+        "type": "text",
+        "id": "cod_btn_border_width",
+        "label": "cod_btn border width",
+        "default": "1px"
+      }, {
+        "type": "text",
+        "id": "cod_btn_padding_top",
+        "label": "cod_btn padding top",
+        "default": "1px"
+      }, {
+        "type": "text",
+        "id": "cod_btn_padding_right",
+        "label": "cod_btn padding right",
         "default": "1px"
       }
     ]
