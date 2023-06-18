@@ -1,0 +1,71 @@
+<form
+  id="monster_form"
+  class="monster_form"
+  method="post"
+  style="
+            		background-color: {{block.settings.form_bg}};
+                    border-color: {{block.settings.form_border_color}};
+                    border: solid;
+                    border-radius: {{block.settings.form_border_radius}};
+                    border-width: {{block.settings.form_border_width}};
+            	"><h1>COD MONSTER V2 with DiiLii</h1>
+  <div class="mb-3">
+    <label for="exampleFormControlInput1" class="form-label">Full name</label>
+    <input
+      type="email"
+      class="form-control"
+      id="exampleFormControlInput1"
+      placeholder="Your name">
+  </div>
+  <!-- {% assign avg_rating = block.settings.product.metafields.demo.avg_rating.value | round %}
+  <span style="color:{{ block.settings.colour }}">
+  {% render 'stars', rating: avg_rating %}
+  </span>
+  {% if avg_rating >= 4 %}
+  <br>
+  <img src="{{ "thumbs-up.png" | asset_img_url: '15x' }}" height="15" width="15" loading="lazy">
+  {{ 'ratings.home.recommendationText' | t }}
+  {% endif %}
+
+  {% schema %}
+  {
+  "name": "Star Rating",
+  "target": "section",
+  "settings": [
+  { "type": "product", "id": "product", "label": "product", "autofill": true },
+  { "type": "color", "id": "colour", "label": "Star Colour", "default": "#ff0000" }
+  ]
+  }
+  {% endschema %}
+
+  --></form>
+
+{% schema %}
+  {
+    "name": "COD Monster v2",
+    "target": "section",
+    "settings": [
+      {
+        "type": "color",
+        "id": "form_bg",
+        "label": "form background color",
+        "default": "#1b173a"
+      }, {
+        "type": "color",
+        "id": "form_border_color",
+        "label": "form border color",
+        "default": "#004BFF"
+      }, {
+        "type": "text",
+        "id": "form_border_radius",
+        "label": "form border radius",
+        "default": "1px"
+      }, {
+        "type": "text",
+        "id": "form_border_width",
+        "label": "form border width",
+        "default": "1px"
+      }
+    ]
+  }
+{% endschema %}
